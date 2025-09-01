@@ -7,7 +7,7 @@ from app.src.tools import rag_search_tool, web_search_tool
 def router_node(state: AgentState) -> AgentState:
     # Use full message history with a system prompt
     system_prompt = (
-        "You are a router that decides how to handke user queries:\n"
+        "You are a router that decides how to handle user queries:\n"
         "- Use 'end' for pure greetings/small-talk (also provide a 'reply') and answer that is already in the current conversation chat history.\n"
         "- Use 'rag' when knowledge base lookup is needed"
         "- Use 'answer' when you can answer directly without external info"
