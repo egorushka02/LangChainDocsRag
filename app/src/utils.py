@@ -2,7 +2,7 @@ from langchain_core.messages import HumanMessage, AIMessage, BaseMessage
 import uuid
 from typing import List, Dict, Optional
 
-def get_or_create_seesion_id(session_id: Optional[str]) -> str:
+def get_or_create_session_id(session_id: Optional[str]) -> str:
     """Return the provided session_id or generate a new one"""
     return session_id or str(uuid.uuid4())
 
