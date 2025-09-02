@@ -1,7 +1,12 @@
 from langchain_tavily import TavilySearch
 from langchain_core.tools import tool
-from app.src.chroma_utils import vectorstore
+from src.chroma_utils import vectorstore
+from dotenv import load_dotenv
 import os
+
+load_dotenv()
+
+
 
 # Initialize TavilySearch
 tavily = TavilySearch(max_results=3, topic="general")

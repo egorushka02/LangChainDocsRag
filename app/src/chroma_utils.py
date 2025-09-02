@@ -16,6 +16,8 @@ CHROMA_HOST = os.getenv("CHROMA_HOST")
 CHROMA_PORT = os.getenv("CHROMA_PORT")
 CHROMA_COLLECTION_NAME = os.getenv("CHROMA_COLLECTION_NAME")
 
+print(CHROMA_HOST, CHROMA_COLLECTION_NAME, CHROMA_PORT)
+
 # Create HTTP Chroma client, using host and port
 client = chromadb.HttpClient(host=CHROMA_HOST, port=CHROMA_PORT)
 

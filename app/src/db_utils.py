@@ -41,4 +41,4 @@ def get_chat_history(session_id):
     return messages
 
 # Initialize table
-create_chat_history()
+# create_chat_history()

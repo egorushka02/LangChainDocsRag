@@ -5,7 +5,7 @@ from langchain_core.messages import BaseMessage
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+load_dotenv(override=True)
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 OPEN_AI_BASE_URL = os.getenv("OPEN_AI_BASE_URL")
@@ -13,7 +13,7 @@ OPEN_AI_BASE_URL = os.getenv("OPEN_AI_BASE_URL")
 
 # Pydantic schemas
 class RouteDecision(BaseModel):
-    route: Literal["rag", "answer", "web"]
+    route: Literal["rag", "answer", "end"]
     reply: str | None = Field(None, description="Filled only when route = 'end'")
 
 class RagJudge(BaseModel):

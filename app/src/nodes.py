@@ -1,7 +1,7 @@
 from typing import Literal
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
-from app.src.shared import AgentState, router_llm, judge_llm, answer_llm, RouteDecision, RagJudge
-from app.src.tools import rag_search_tool, web_search_tool
+from src.shared import AgentState, router_llm, judge_llm, answer_llm, RouteDecision, RagJudge
+from src.tools import rag_search_tool, web_search_tool
 
 # Node 1: decision router
 def router_node(state: AgentState) -> AgentState:
@@ -49,7 +49,7 @@ def rag_node(state: AgentState) -> AgentState:
 def web_node(state: AgentState) -> AgentState:
     query = next((m.content for m in reversed(state["messages"])
                   if isinstance(m, HumanMessage)), "")
-    snippets = web_search_tool.invoke({"uqery": query})
+    snippets = web_search_tool.invoke({"query": query})
     return {**state, "web": snippets, "route": "answer"}
 
 # Node 4: answer 

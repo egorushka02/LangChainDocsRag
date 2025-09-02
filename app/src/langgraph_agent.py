@@ -1,8 +1,8 @@
 from typing import Literal
 from langchain_core.messages import BaseMessage, HumanMessage, AIMessage
 from langgraph.graph import StateGraph, END
-from app.src.nodes import router_node, rag_node, web_node, answer_node
-from app.src.shared import AgentState
+from src.nodes import router_node, rag_node, web_node, answer_node
+from src.shared import AgentState
 
 # Routing helpers
 def from_router(st: AgentState) -> Literal["rag", "answer", "end"]:
@@ -12,7 +12,7 @@ def after_rag(st: AgentState) -> Literal["answer", "web"]:
     return st["route"]
 
 def after_web(st: AgentState) -> Literal["answer"]:
-    return st["answer"]
+    return "answer"
 
 # Build graph
 g = StateGraph(AgentState)
