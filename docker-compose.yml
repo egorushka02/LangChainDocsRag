@@ -1,12 +1,46 @@
 
+
 services:
+  # ChromaDB - vector database
   chroma-db:
     image: chromadb/chroma:latest
-    container_name: chroma-db
+    # container_name: chroma-db
     ports:
       - "8000:8000"
     volumes:
       - chroma_data:/chroma/chroma
+    restart: unless-stopped
 
+  # FastAPI backend
+  backend:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: rag-backend
+    ports:
+      - "5001:5000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - CHROMA_HOST=chroma-db
+      - CHROMA_PORT=8000
+    depends_on:
+      - chroma-db
+    restart: unless-stopped
+
+  # Streamlit frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: rag-frontend
+    environment:
+      - BACKEND_URL=http://backend:5000
+    ports:
+      - "8501:8501"
+    depends_on:
+      - backend
+    restart: unless-stopped
+ 
 volumes:
   chroma_data:
+  

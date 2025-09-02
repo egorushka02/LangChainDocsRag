@@ -161,3 +161,8 @@ cython_debug/
 
 # data folder
 /data
+
+# databases
+rag_app.db
+
+.streamlit/
